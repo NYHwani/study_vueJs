@@ -1,5 +1,6 @@
 <template>
     <h2>{{title}}</h2>
+    <button @click="messageClick">전송</button>
 </template>
 
 <script>
@@ -17,6 +18,9 @@
         methods : {
             fnTest() {
                 console.log("child Test");
+            },
+            messageClick() {
+                this.$emit('pageHandler', '자식이 부모 호출');
             }
         },
         created() {
@@ -32,7 +36,7 @@
         },
         beforeUpdate() {
             console.log("title beforeUpdate d");
-            console.log(this.title);
+            console.log(this.title);            
         },
     }
 </script>

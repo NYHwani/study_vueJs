@@ -1,7 +1,7 @@
 <template>
     <h1>Hello, {{title}}</h1>
 
-    <div><PageTitle :title="title" ref="refPageTitle" /></div>        
+    <div><PageTitle :title="title" ref="refPageTitle" @pageHandler="pageHandler" /></div>        
 
     <h1 v-html='htmlString'></h1>    
 
@@ -39,7 +39,7 @@
     </div>
 
     <div>
-        <img :src="imgSrc" >
+        <img :src="imgSrc" style="width: 1%;">
     </div>
 
     <div>
@@ -176,6 +176,9 @@
             async getList() {
                 this.apiProductList = await this.$api("https://aa85ba6f-4e5c-4311-996e-ffbe87b65488.mock.pstmn.io/list", "get");
                 console.log(this.apiProductList);
+            },
+            pageHandler : function(e) {
+                console.log("pageHandler " + e);
             }
         },
         computed : {
@@ -210,6 +213,7 @@
         beforeUpdate() {
             console.log("beforeUpdate d");
             console.log(this.apiProductList);
+            console.log("beforeUpdate 부모가 자식 호출");
             this.$refs.refPageTitle.fnTest();
         },
         components : {PageTitle}
