@@ -31,4 +31,13 @@ const router = createRouter({
   routes
 })
 
+// Navigation Guard 설정
+router.beforeEach((to, from, next) => {
+  if (to.matched.length === 0) { // 매칭되는 라우트가 없는 경우
+    next({ name: 'home' }); // 홈페이지로 리디렉션
+  } else {
+    next(); // 다음 라우트로 이동
+  }
+})
+
 export default router

@@ -179,6 +179,14 @@
             },
             pageHandler : function(e) {
                 console.log("pageHandler " + e);
+            },
+            navigateToDataBinding() {
+                this.$router.push({
+                    name: 'DataBinding',
+                    params: {
+                        no: 1 // 동적 파라미터 설정 예시
+                    }
+                })
             }
         },
         computed : {
