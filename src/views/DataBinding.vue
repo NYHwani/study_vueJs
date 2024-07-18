@@ -70,7 +70,7 @@
 
     <div v-show="bShow">하이염</div>
 
-    <div @click="fnClick('클릭'), fnTwoClick()">클릭해보세요</div>
+    <div @click="fnClick('클릭'), fnTwoClick()">클릭해보세요!!!!!!</div>
     <div>카운트 : {{count}}</div>
 
     <select v-model="selectValue" @change="fnSelectChange">
