@@ -14,10 +14,10 @@ router.isReady().then(() => {
     // Vue Router Navigation Guard 설정
     router.beforeEach((to, from, next) => {
         if (to.matched.length === 0) {
-        // 매칭되는 라우트가 없으면 홈페이지로 리디렉션
-        next({ name: 'Home' });
+            // 매칭되는 라우트가 없으면 홈페이지로 리디렉션
+            next({ name: 'Home' });
         } else {
-        next(); // 다음 라우트로 이동
+            next(); // 다음 라우트로 이동
         }
     });
 
@@ -25,7 +25,7 @@ router.isReady().then(() => {
     router.push({
         name: 'DatabindingDetail',
         params: {
-        userNo: 1 // 예시로 1을 넘김
+            userNo: 1 // 예시로 1을 넘김
         }
     });
 
