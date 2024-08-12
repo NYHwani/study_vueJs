@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import DataBinding from '../views/DataBinding.vue'
+import TestView from '../views/TestView.vue'
+import TestJoinView from '../views/TestJoinView.vue'
 
 const routes = [
   {
@@ -23,6 +25,16 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: DataBinding
+  },
+  {
+    path: '/test',
+    name: 'TestView',
+    component: TestView
+  },
+  {
+    path: '/testJoin',
+    name: 'TestJoinView',
+    component: TestJoinView
   }
 ]
 
