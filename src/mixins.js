@@ -7,7 +7,10 @@ export default {
           const response = await axios({
             method: method,
             url: url,
-            data: data
+            data: data,
+            headers: {
+              'Accept': 'application/hal+json'
+            }
           });
           return response.data;
         } catch (error) {

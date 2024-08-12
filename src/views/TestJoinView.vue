@@ -7,8 +7,12 @@
           <div class="card-body">
             <form @submit.prevent="register">
                 <div class="form-group">
-                    <label for="username">아이디</label>
-                    <input type="text" class="form-control" id="username" v-model="username" required>
+                    <label for="name">이름</label>
+                    <input type="text" class="form-control" id="name" v-model="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginId">아이디</label>
+                    <input type="text" class="form-control" id="loginId" v-model="loginId" required>
                 </div>
                 <div class="form-group">
                     <label for="password">비밀번호</label>
@@ -35,10 +39,14 @@
 </template>
 
 <script>
+
+import bcrypt from 'bcryptjs';
+
 export default {
   data() {
     return {
-        username: '',
+        name: '',
+        loginId: '',
         password: '',
         confirmPassword: '',
         email: '',
@@ -51,17 +59,21 @@ export default {
         if(this.password != this.confirmPassword){
             return alert('비밀번호를 다시 한번 확인해 주세요.');
         }
+
+        const salt = bcrypt.genSaltSync(10);
+        const hashedPassword = bcrypt.hashSync(this.password, salt);
         
         const userData = {
-            username: this.username,
-            password: this.password,
+            name: this.name,
+            loginId: this.loginId,
+            password: hashedPassword,
             email: this.email
         };
 
         console.log(userData);
 
         try {
-            this.apiProductList = await this.$api("https://aa85ba6f-4e5c-4311-996e-ffbe87b65488.mock.pstmn.io/list", "get", userData);
+            this.apiProductList = await this.$api("http://192.168.21.134:8080/api/user/sign", "post", userData);
 
             alert('회원가입에 성공했습니다!');
 

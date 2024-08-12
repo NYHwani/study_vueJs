@@ -9,8 +9,8 @@
                     <div class="card-body">
                         <form @submit.prevent="login">
                             <div class="form-group">
-                                <label for="username">아이디</label>
-                                <input type="text" class="form-control" id="username" v-model="username" required>
+                                <label for="loginId">아이디</label>
+                                <input type="text" class="form-control" id="loginId" v-model="loginId" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">비밀번호</label>
@@ -29,7 +29,7 @@
 export default {
   data() {
     return {
-      username: '',
+      loginId: '',
       password: ''
     };
   },
@@ -37,22 +37,22 @@ export default {
     async login() {
         
         const userData = {
-            username: this.username,
+            loginId: this.loginId,
             password: this.password
         };
 
         console.log(userData);
 
         try {
-            this.apiProductList = await this.$api("https://aa85ba6f-4e5c-4311-996e-ffbe87b65488.mock.pstmn.io/list", "get", userData);
+            this.apiProductList = await this.$api("http://192.168.21.134:8080/api/user/login", "post", userData);
             console.log(this.apiProductList);
 
             alert('로그인에 성공했습니다!');
 
-            this.$router.push('/test');
+            this.$router.push('/testJoin');
 
         } catch (error) {
-            console.error('로그인 실패:', error);
+            console.error('로그인 실패:', error.response.data.message);
         }
     }
   }
